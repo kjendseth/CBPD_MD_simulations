@@ -1,0 +1,26 @@
+parm ../ptm-2/md_gpu_no_rst_1/result/prmtop
+parmstrip @5493-1000000
+
+
+trajin ../ptm-2/md_gpu_no_rst_1/result/prod.nc
+trajin ../ptm-2/md_gpu_no_rst_2/result/prod.nc
+trajin ../ptm-2/md_gpu_no_rst_3/result/prod.nc
+
+autoimage
+
+
+#reference ../inpcrd [REF]
+
+
+rms rms_C1 :1-185@CA first out rms_m1_ptm-2.dat
+
+
+distance d_m1_m2 :1-188@CA :192-291@CA out md_data_ptm-2.dat
+distance d_m1_m3 :1-188@CA :313-364@CA out md_data_ptm-2.dat
+distance d_m2_m3 :192-291@CA :313-364@CA out md_data_ptm-2.dat
+
+radgyr :1-364&!@H= out RoG_ptm-2.dat mass nomax
+
+trajout ptm-2.pdb offset 2000
+
+go
